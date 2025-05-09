@@ -1,0 +1,217 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Todo APi",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/projects": {},
+        "api/projects/": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Obtener todo los projectos",
+                "operationId": "d047727bacd5e36e63c632cd3085cf04",
+                "responses": {
+                    "200": {
+                        "description": "Proyectos:",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Projects"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No hay proyectos."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Agregra un nuevo proyecto",
+                "operationId": "edddb3ea95f074894b82d8487d9dc9be",
+                "requestBody": {
+                    "description": "Datos del nuevo proyecto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Projects"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Proyecto creado correctamente."
+                    },
+                    "400": {
+                        "description": "Proyecto no creado."
+                    }
+                }
+            }
+        },
+        "api/projects/{id}": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Obtener un proyecto por medio de un id",
+                "operationId": "f7c95f11665d245a39e5c9b925039c01",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del proyecto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proyecto eliminado correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Projects"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Proyecto no encontrado."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Actualizar un proyecto",
+                "operationId": "5b30b040411554804a38d8c07643b444",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del proyecto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proyecto actualizado correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Projects"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Proyecto no actualizado."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Eliminar un proyecto",
+                "operationId": "783259721926d6645d5a7521f7a5676e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del proyecto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proyecto eliminado correctamente."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Projects": {
+                "title": "Projects",
+                "required": [
+                    "name",
+                    "status"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Nombre del proyecto"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Descripcion del proyecto"
+                    }
+                },
+                "type": "object"
+            },
+            "Tasks": {
+                "title": "Tasks",
+                "required": [
+                    "id",
+                    "project_id",
+                    "title",
+                    "description",
+                    "status",
+                    "priority",
+                    "due_date"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "project_id": {
+                        "example": 1
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Nombre de la tarea"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Descripcion de la tarea"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "active"
+                    },
+                    "priority": {
+                        "type": "string",
+                        "example": "high"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "09/05/20205"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Projects",
+            "description": "Projects"
+        }
+    ]
+}
